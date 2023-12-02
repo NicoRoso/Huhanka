@@ -259,8 +259,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -4.9072266, y: 0}
-  m_SizeDelta: {x: 0.1675, y: 0}
+  m_AnchoredPosition: {x: -3.5, y: 0}
+  m_SizeDelta: {x: 0.1675, y: -2.4358}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &271470239
 MonoBehaviour:
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -814,6 +814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1710450038}
   - component: {fileID: 1710450039}
+  - component: {fileID: 1710450040}
   m_Layer: 5
   m_Name: TimerSlider
   m_TagString: Untagged
@@ -893,6 +894,27 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &1710450040
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710450037}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 78f5b791c772ac54d86784524e586c71, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1712620036
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,10 +947,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2d6e41fa2a7c74f96d8058a5e9e73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timer: 5
+  _timer: 10
   _slider: {fileID: 1710450039}
   _canvasTime: {fileID: 1332239232}
   _canvasDeath: {fileID: 100111417}
+  isStarted: 0
 --- !u!136 &1712620038
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1053,8 +1076,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.6922989, y: -0.06869984}
+  m_SizeDelta: {x: -1.3845, y: -2.0638}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1749714857
 MonoBehaviour:
