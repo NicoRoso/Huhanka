@@ -56,8 +56,8 @@ public class TimeDeath : MonoBehaviour
         }
     }
 
-    public void StartTimer(bool isStarted)
+    public void StartTimer(bool isStart)
     {
-        isStarted = true;
+        isStarted = isStart;
     }
 }
