@@ -121,18 +121,21 @@ public class PlayerMovementScript : MonoBehaviour
     {
         RaycastHit hitLower;
         if (Physics.Raycast(stepRayLower.transform.position, dir, out hitLower, _lowOfset,_stairsLayer))
-        {
+        {   
+            Debug.DrawRay(stepRayLower.transform.position, dir* _lowOfset, Color.blue);
+            Debug.DrawRay(stepRayUpper.transform.position, dir* _upOfset, Color.red);
             RaycastHit hitUpper;
             if (!Physics.Raycast(stepRayUpper.transform.position, dir, out hitUpper, _upOfset, _stairsLayer))
-            {
+            {            Debug.DrawRay(stepRayUpper.transform.position, dir* _upOfset, Color.green);
                 return true;
             }
         }
         if (Physics.Raycast(stepRayLower.transform.position, -dir, out hitLower, _lowOfset, _stairsLayer))
-        {
+        {            Debug.DrawRay(stepRayLower.transform.position, dir* _lowOfset, Color.blue);
+            Debug.DrawRay(stepRayUpper.transform.position, dir* _upOfset, Color.red);
             RaycastHit hitUpper;
             if (!Physics.Raycast(stepRayUpper.transform.position, -dir, out hitUpper, _upOfset, _stairsLayer))
-            {
+            {        Debug.DrawRay(stepRayUpper.transform.position, dir* _upOfset, Color.green);
                 return true;
             }
         }

@@ -116,6 +116,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7033856705484863121}
     m_Modifications:
+    - target: {fileID: 1681110320862556299, guid: 3e62216f97e421844b1a7249d938dfaa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2309639247289897132, guid: 3e62216f97e421844b1a7249d938dfaa,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -181,10 +186,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4374698648875322965, guid: 3e62216f97e421844b1a7249d938dfaa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069362876390719146, guid: 3e62216f97e421844b1a7249d938dfaa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113034438036687259, guid: 3e62216f97e421844b1a7249d938dfaa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952601863107725609, guid: 3e62216f97e421844b1a7249d938dfaa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228610904405157225, guid: 3e62216f97e421844b1a7249d938dfaa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7645708751642268574, guid: 3e62216f97e421844b1a7249d938dfaa,
         type: 3}
       propertyPath: m_Name
       value: Tablet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645708751642268574, guid: 3e62216f97e421844b1a7249d938dfaa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668354332621578078, guid: 3e62216f97e421844b1a7249d938dfaa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761382882731958028, guid: 3e62216f97e421844b1a7249d938dfaa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
