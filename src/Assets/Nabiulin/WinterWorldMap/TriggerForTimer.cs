@@ -13,6 +13,7 @@ public class TriggerForTimer : MonoBehaviour
         {
             _blizzard.SetActive(true);
             other.gameObject.GetComponent<TimeDeath>().StartTimer(true);
+            RenderSettings.fog = true;
         }
     }
 }
