@@ -60,5 +60,6 @@ public class TimeDeath : MonoBehaviour
     {
         isStarted = isStart;
         _timer = seconds;
+        _slider.maxValue = seconds;
     }
 }
