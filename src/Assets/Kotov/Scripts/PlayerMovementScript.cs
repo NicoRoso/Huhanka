@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovementScript : MonoBehaviour
 {
     [Header("Movement")] 
     [SerializeField] private float _moveSpeed;
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Gravity")] 
     [SerializeField] private Vector3 _gravity;
+    [SerializeField] private float _gravityMax;
     [SerializeField] private float _gravityForce;
     
     [Header("Offset")]
@@ -88,7 +89,12 @@ public class PlayerController : MonoBehaviour
         else if (TryStairsCast())  _gravity = Vector3.zero;
         else if (_isGrounded) _gravity = -transform.up;
         else _gravity += -transform.up * _gravityForce * Time.deltaTime;
-        
+
+        if (_gravity.magnitude > _gravityMax)
+        {
+            _gravity = _gravity.normalized* _gravityMax;
+        }
+
         GravityImpliment();
         StepClimb();
 
