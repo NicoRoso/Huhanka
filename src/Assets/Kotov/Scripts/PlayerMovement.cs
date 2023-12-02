@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        RB.velocity = new Vector3(RB.velocity.x, 0f, RB.velocity.z);
+        RB.velocity = new Vector3(RB.velocity.x, RB.velocity.y/4f, RB.velocity.z);
         RB.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
     }
 
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (OnSlope())  _gravity = Vector3.zero;
         else if (TryStairsCast())  _gravity = Vector3.zero;
-        else if (_isGrounded) _gravity = -transform.up / 2f;
+        else if (_isGrounded) _gravity = -transform.up;
         else _gravity += -transform.up * _gravityForce * Time.deltaTime;
         
         GravityImpliment();
@@ -176,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Vector3 flatVel = new Vector3(RB.velocity.x, 0f, RB.velocity.z);
+            Vector3 flatVel = new Vector3(RB.velocity.x, RB.velocity.y/4f, RB.velocity.z);
             if (flatVel.magnitude > _moveSpeed && _isGrounded)
             {
                 Vector3 limitSettedVel = flatVel.normalized * _moveSpeed;
