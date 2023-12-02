@@ -9553,17 +9553,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab0fc542e6aa6e48bf61987d199042b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 673570806}
-  speed: 8
-  gravity: -9.81
-  jumpHeight: 3
-  groundCheck: {fileID: 1737901551}
-  groundDistance: 0.4
-  groundMask:
+  _moveSpeed: 0
+  _slopeSpeed: 0
+  _groundDrag: 0
+  _airSpeed: 0
+  _airDrag: 0
+  _jumpForce: 0
+  _jumpCooldown: 0
+  _jumpAirMultiplier: 0
+  _jumpReady: 0
+  _jumpKey: 32
+  _groundCheck: {fileID: 0}
+  _groundDistance: 0
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  footStepSound: {fileID: 0}
-  footStepDelay: 0
+  _isGrounded: 0
+  _maxSlopeAnggle: 0
+  _slopeDistance: 0
+  _gravity: {x: 0, y: 0, z: 0}
+  _gravityForce: 0
+  stepRayUpper: {fileID: 0}
+  stepRayLower: {fileID: 0}
+  _stairsLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  stepHeight: 0.3
+  _lowOfset: 0.1
+  _upOfset: 0.2
+  stepSmooth: 2
+  _orientation: {fileID: 0}
 --- !u!1001 &676584194
 PrefabInstance:
   m_ObjectHideFlags: 0
