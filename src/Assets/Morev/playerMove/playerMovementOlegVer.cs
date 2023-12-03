@@ -91,10 +91,16 @@ public class playerMovementOlegVer : MonoBehaviour
     IEnumerator JumpMaker()
     {
         float heigh = _jumpHeigh;
+        float time = 0;
         while(heigh > 0)
         {
             jump = new Vector3(0, heigh * Mathf.Abs(gravityCoefficient), 0);
-            heigh -=  _jumpHeigh / 120;
+            heigh -=  _jumpHeigh / 60 * Time.deltaTime;
+            time += Time.deltaTime;
+            if(isGrounded && time > 0.2f)
+            {
+                heigh = 0;
+            }
             yield return null;
         }
         jump = new Vector3(0, 0, 0);
