@@ -25,7 +25,6 @@ public class playerMovementOlegVer : MonoBehaviour
     }
     void Update()
     {
-        //Debug.Log(isGrounded);
         gravity = new Vector3(0, -fallSpeed, 0);
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
@@ -71,7 +70,6 @@ public class playerMovementOlegVer : MonoBehaviour
             time = 0;
             fallSpeed = 0;
         }
-        Debug.Log(fallSpeed);
     }
     void Jump()
     {
