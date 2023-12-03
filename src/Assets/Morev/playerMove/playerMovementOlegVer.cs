@@ -71,7 +71,6 @@ public class playerMovementOlegVer : MonoBehaviour
             time = 0;
             fallSpeed = 0;
         }
-        Debug.Log(fallSpeed);
     }
     void Jump()
     {
