@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18365073, g: 0.22912589, b: 0.30515796, a: 1}
+  m_IndirectSpecularColor: {r: 0.15383856, g: 0.174959, b: 0.1856476, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &746544340
 AudioListener:
   m_ObjectHideFlags: 0
@@ -348,13 +348,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083192572}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.46914458, y: 0.027494106, z: -0.6940886, w: -0.5453334}
+  m_LocalRotation: {x: -0.45414355, y: -0.12086081, z: -0.82998794, w: -0.30044365}
   m_LocalPosition: {x: -55.600006, y: 39.1, z: -61.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 33.357, y: 408.056, z: 118.903}
+  m_LocalEulerAnglesHint: {x: 4.144, y: 415.961, z: 142.403}
 --- !u!114 &1083192575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +386,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 600638994096013014, guid: 7df7a352ff8d2fc4cb91ce01de9f714f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 600638994096013014, guid: 7df7a352ff8d2fc4cb91ce01de9f714f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5874566985791790980, guid: 7df7a352ff8d2fc4cb91ce01de9f714f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -440,11 +450,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HUB
-      objectReference: {fileID: 0}
-    - target: {fileID: 6046792004361942303, guid: 7df7a352ff8d2fc4cb91ce01de9f714f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
