@@ -9,6 +9,7 @@ public class playerMovementOlegVer : MonoBehaviour
     [SerializeField] CharacterController characterController;
     [SerializeField] float _speed;
     [SerializeField] float _jumpHeigh;
+    [SerializeField] float _maxFallspeed;
     [SerializeField] Transform _stabilizator;
     float x;
     float z;
@@ -42,14 +43,35 @@ public class playerMovementOlegVer : MonoBehaviour
     {
         if (!characterController.isGrounded)
         {
-            time += Time.deltaTime * gravityCoefficient * 9.8f;
-            fallSpeed = time;
+            
+            if(_maxFallspeed < Mathf.Abs(time))
+            {
+                if(gravityCoefficient < 0 && time > 0)
+                {
+                    time += Time.deltaTime * gravityCoefficient * 9.8f;
+                    fallSpeed = time;
+                }
+                else
+                {
+                    if(gravityCoefficient > 0 && time < 0)
+                    {
+                        time += Time.deltaTime * gravityCoefficient * 9.8f;
+                        fallSpeed = time;
+                    }
+                }
+            }
+            else
+            {
+                time += Time.deltaTime * gravityCoefficient * 9.8f;
+                fallSpeed = time;
+            }
         }
         else
         {
             time = 0;
             fallSpeed = 0;
         }
+        Debug.Log(fallSpeed);
     }
     void Jump()
     {
