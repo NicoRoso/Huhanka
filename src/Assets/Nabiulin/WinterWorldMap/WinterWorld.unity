@@ -700,10 +700,12 @@ MonoBehaviour:
   groundCheck: {fileID: 0}
   groundDistance: 0.4
   groundMask:
-    serializedVersion: 2
     m_Bits: 0
+  velocity: {x: 0, y: 0, z: 0}
+  isGrounded: 0
   footStepSound: {fileID: 0}
   footStepDelay: 0
+  nextFootstep: 0
 --- !u!4 &771814432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4754329639564991795, guid: e15b437940541dc44986d88843410f35,
