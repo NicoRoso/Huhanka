@@ -133,8 +133,8 @@ CharacterController:
   m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_SkinWidth: 0.0001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: -0.33, z: 0}
 --- !u!114 &5876930292172718110
 MonoBehaviour:
@@ -150,7 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 5748412005046364362}
   _speed: 5
+  _jumpHeigh: 5
   _stabilizator: {fileID: 2135862171585025745}
+  gravityCoefficient: 1
 --- !u!114 &6825221065598913024
 MonoBehaviour:
   m_ObjectHideFlags: 0
