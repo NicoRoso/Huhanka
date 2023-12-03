@@ -36,6 +36,7 @@ public class playerMovementOlegVer : MonoBehaviour
             time = 0;
             fallSpeed = 0;
         }
+        Debug.Log(characterController.isGrounded);
     }
     public void SetGravityCoefficient(float newCoefficient)
     {
