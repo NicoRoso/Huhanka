@@ -6,20 +6,20 @@ using UnityEngine.UI;
 
 public class Locator : MonoBehaviour
 {
-    [SerializeField] GameObject _testNumbersText;
+    //[SerializeField] GameObject _testNumbersText;
     //[SerializeField] Transform _testDestination;
-    [SerializeField] GameObject _image;
-
     [SerializeField] int distanceSwitch12;
     [SerializeField] int distanceSwitch23;
     [SerializeField] int distanceSwitch34;
     [SerializeField] int distanceSwitch45;
 
     [SerializeField] Transform _player;
+    [HideInInspector]
     public Transform destination;
     float currentDistance;
     [SerializeField] LocatorStates locatorStates;
     LocatorState currentState;
+    [HideInInspector]
     public bool isOpeningPossible = false;
     private void Start()
     {
@@ -31,11 +31,11 @@ public class Locator : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        SetLocatorDestination(GameObject.FindObjectOfType<PlayerDestinations>().currentDestination);
+        SetLocatorDestination(GameObject.FindObjectOfType<PlayerDestinations>().currentDestination); //На сцене нужен объект со скриптом PlayerDestinations и хотя бы 1 объектом в списке destinations
         currentDistance = (_player.position - destination.position).magnitude;
         SetCurrentState();
-        //SetStateImageOnScreen();
-        TestSetStateValueOnScreen();
+        SetStateImageOnScreen();
+        //TestSetStateValueOnScreen();
         if(currentState.number == 5)
         {
             isOpeningPossible = true;
@@ -89,13 +89,13 @@ public class Locator : MonoBehaviour
             }
         }
     }
-    void TestSetStateValueOnScreen()
-    {
-        _testNumbersText.GetComponent<TextMeshProUGUI>().text = currentState.number.ToString();
-    }
+    //void TestSetStateValueOnScreen()
+    //{
+    //    _testNumbersText.GetComponent<TextMeshProUGUI>().text = currentState.number.ToString();
+    //}
     void SetStateImageOnScreen()
     {
-        _image.GetComponent<Image>().sprite = currentState.image;
+        GetComponent<Image>().sprite = currentState.image;
     }
     void SetSoundOfThisState()
     {
