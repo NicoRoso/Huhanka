@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Locator : MonoBehaviour
 {
     [SerializeField] GameObject _testNumbersText;
-    [SerializeField] Transform _testDestination;
+    //[SerializeField] Transform _testDestination;
     [SerializeField] GameObject _image;
 
     [SerializeField] int distanceSwitch12;
@@ -16,13 +16,14 @@ public class Locator : MonoBehaviour
     [SerializeField] int distanceSwitch45;
 
     [SerializeField] Transform _player;
-    Transform destination;
+    public Transform destination;
     float currentDistance;
     [SerializeField] LocatorStates locatorStates;
     LocatorState currentState;
+    public bool isOpeningPossible = false;
     private void Start()
     {
-        SetLocatorDestination(_testDestination);
+        //SetLocatorDestination(_testDestination);
     }
     public void SetLocatorDestination(Transform thisDestination)
     {
@@ -30,10 +31,19 @@ public class Locator : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        SetLocatorDestination(GameObject.FindObjectOfType<PlayerDestinations>().currentDestination);
         currentDistance = (_player.position - destination.position).magnitude;
         SetCurrentState();
         //SetStateImageOnScreen();
-        TestSetStateValueOnScreen(); 
+        TestSetStateValueOnScreen();
+        if(currentState.number == 5)
+        {
+            isOpeningPossible = true;
+        }
+        else
+        {
+            isOpeningPossible = false;
+        }
     }
 
     LocatorState FindStateWithNumber(int num)
