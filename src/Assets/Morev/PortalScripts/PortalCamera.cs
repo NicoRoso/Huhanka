@@ -36,7 +36,7 @@ public class PortalCamera : MonoBehaviour
         float YangularDifference = _nearPlayerPortal.rotation.y;
         float ZangularDifference = _nearPlayerPortal.rotation.z;
         float WangularDifference = _nearPlayerPortal.rotation.w;
-        Quaternion angularDifference = new Quaternion(XangularDifference, YangularDifference, ZangularDifference, WangularDifference);
+        Quaternion angularDifference = new Quaternion(XangularDifference,YangularDifference,ZangularDifference, WangularDifference);
         angularDifference = Quaternion.Inverse(angularDifference);
         transform.localPosition = angularDifference * playerOffsetFromPortal;
         transform.localRotation = angularDifference * _playerCamera.rotation;

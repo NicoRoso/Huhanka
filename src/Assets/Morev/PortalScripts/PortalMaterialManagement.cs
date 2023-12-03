@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class PortalMaterialManagement : MonoBehaviour
 {
-    // я допишу, чтобы каждую камеру находило и всё такое (Олег)
-    [SerializeField] Camera cameraA;
     [SerializeField] Camera cameraB;
-    [SerializeField] Material cameraMaterialA;
+    [SerializeField] Camera cameraC;
     [SerializeField] Material cameraMaterialB;
+    [SerializeField] Material cameraMaterialC;
     void Start()
     {
-        if (cameraA.targetTexture != null)
-        {
-            cameraA.targetTexture.Release();
-        }
-        cameraA.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
-        cameraMaterialA.mainTexture = cameraA.targetTexture;
-
-        if (cameraB.targetTexture != null)
+        if(cameraB.targetTexture != null)
         {
             cameraB.targetTexture.Release();
         }
-        cameraB.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        cameraB.targetTexture = new RenderTexture(Screen.width, Screen.height,24);
         cameraMaterialB.mainTexture = cameraB.targetTexture;
+
+        if (cameraC.targetTexture != null)
+        {
+            cameraC.targetTexture.Release();
+        }
+        cameraC.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        cameraMaterialC.mainTexture = cameraC.targetTexture;
     }
 }

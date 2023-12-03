@@ -5,24 +5,22 @@ using UnityEngine;
 public class PortalTeleporter : MonoBehaviour
 {
     [SerializeField] Transform _player;
-    [SerializeField] Transform _playerCamera;
     [SerializeField] Transform _reciever;
     bool playerIsOverlapping = false;
-    Vector3 playerAndPlayerCamDifference;
-    void FixedUpdate()
+    void Update()
     {
-        playerAndPlayerCamDifference = _player.position - _playerCamera.position;
-        if (playerIsOverlapping)
+        if(playerIsOverlapping)
         {
-            Vector3 portalToPlayer = _playerCamera.position - transform.position;
+            Vector3 portalToPlayer = _player.position - transform.position;
             float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
-            if (dotProduct < 0)
+            if(dotProduct < 0)
             {
-                //здесь выполн€етс€ телепортаци€ при входе в портал (само изменение position и rotation)
-                //reciever - объект камеры, котора€ отвечает за рендер изображени€ данного портала
-                _playerCamera.rotation = _reciever.rotation;
-                _player.position = _reciever.position + playerAndPlayerCamDifference;
-                //
+                CameraRotationSwitch(_reciever.rotation);
+                _player.position = _reciever.position;
+
+
+
+
 
 
                 playerIsOverlapping = false;
@@ -31,16 +29,21 @@ public class PortalTeleporter : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject == _player.gameObject)
         {
             playerIsOverlapping = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject == _player.gameObject)
         {
             playerIsOverlapping = false;
         }
+    }
+
+    void CameraRotationSwitch(Quaternion newRot)
+    {
+        _player.GetComponent<lookAround>().RotateCameraOnPortal(newRot);
     }
 }
