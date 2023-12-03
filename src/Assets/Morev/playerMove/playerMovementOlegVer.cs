@@ -8,20 +8,33 @@ public class playerMovementOlegVer : MonoBehaviour
 {
     [SerializeField] CharacterController characterController;
     [SerializeField] float _speed;
+    [SerializeField] float _jumpHeigh;
     [SerializeField] Transform _stabilizator;
     float x;
     float z;
     Vector3 move;
     Vector3 gravity;
+    Vector3 jump = new Vector3(0,0,0);
     float fallSpeed = 0;
     public float gravityCoefficient = 1;
+    bool isGrounded = true;
+    private void Start()
+    {
+        StartCoroutine(isActuallyGrounded(0.15f));
+    }
     void Update()
     {
+        //Debug.Log(isGrounded);
         gravity = new Vector3(0, -fallSpeed, 0);
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
+        _stabilizator.forward = transform.forward;
         _stabilizator.eulerAngles = new Vector3(0, _stabilizator.eulerAngles.y, 0);
-        move = _stabilizator.right * x + _stabilizator.forward * z + gravity;
+        move = _stabilizator.right * x + _stabilizator.forward * z + gravity + jump;
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
         characterController.Move(move * _speed * Time.deltaTime);
     }
     float time = 0;
@@ -37,10 +50,54 @@ public class playerMovementOlegVer : MonoBehaviour
             time = 0;
             fallSpeed = 0;
         }
-        Debug.Log(characterController.isGrounded);
+    }
+    void Jump()
+    {
+        if (isGrounded)
+        {
+            StartCoroutine(JumpMaker());
+        }
     }
     public void SetGravityCoefficient(float newCoefficient)
     {
         gravityCoefficient = newCoefficient;
+    }
+    IEnumerator isActuallyGrounded(float checkTime)
+    {
+        float timePassed = 0;
+        while (true)
+        {
+            if(!characterController.isGrounded)
+            {
+                timePassed += Time.deltaTime;
+            }
+            else
+            {
+                isGrounded = true;
+                timePassed = 0;
+            }
+            if (timePassed > checkTime)
+            {
+                isGrounded = false;
+            }
+            else
+            {
+                isGrounded = true;
+            }
+            yield return null;
+        }
+    }
+
+    IEnumerator JumpMaker()
+    {
+        float heigh = _jumpHeigh;
+        while(heigh > 0)
+        {
+            jump = new Vector3(0, heigh * Mathf.Abs(gravityCoefficient), 0);
+            heigh -=  _jumpHeigh / 120;
+            yield return null;
+        }
+        jump = new Vector3(0, 0, 0);
+        yield break;
     }
 }
