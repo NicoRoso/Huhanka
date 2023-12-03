@@ -150,7 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 5748412005046364362}
   _speed: 5
-  _jumpHeigh: 5
+  _jumpHeigh: 3
+  _maxFallspeed: 20
   _stabilizator: {fileID: 2135862171585025745}
   gravityCoefficient: 1
 --- !u!114 &6825221065598913024
