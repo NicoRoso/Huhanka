@@ -20,7 +20,7 @@ public class lookAround : MonoBehaviour
         mouseY = Input.GetAxis("Mouse Y") * intensivity * Time.deltaTime;
         xRotation += mouseX;
         yRotation -= mouseY;
-        yRotation = Mathf.Clamp(yRotation, -90f, 90f);
+        yRotation = Mathf.Clamp(yRotation, -89.9f, 89.9f);
         transform.rotation = Quaternion.Euler(yRotation, xRotation, 0);
     }
 

@@ -6,6 +6,7 @@ public class playerMovementOlegVer : MonoBehaviour
 {
     [SerializeField] CharacterController characterController;
     [SerializeField] float _speed;
+    [SerializeField] Transform _stabilizator;
     float x;
     float z;
     Vector3 move;
@@ -18,7 +19,8 @@ public class playerMovementOlegVer : MonoBehaviour
     {
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
-        move = (transform.right.normalized * x + transform.forward.normalized * z) + gravity;
+        _stabilizator.eulerAngles = new Vector3(0, _stabilizator.eulerAngles.y, 0);
+        move = _stabilizator.right * x + _stabilizator.forward * z + gravity;
         characterController.Move(move * _speed * Time.deltaTime);
     }
 }
