@@ -8,6 +8,7 @@ public class lookAround : MonoBehaviour
     float mouseY;
     float yRotation = 0;
     float xRotation = 0;
+    float zRotation = 0;
     public float intensivity = 100;
     void Start()
     {
@@ -36,5 +37,13 @@ public class lookAround : MonoBehaviour
             yRotation = newRotation.eulerAngles.x;
         }
         xRotation = newRotation.eulerAngles.y;
+        if (newRotation.eulerAngles.z > 180)
+        {
+            zRotation = newRotation.eulerAngles.z - 360;
+        }
+        else
+        {
+            zRotation = newRotation.eulerAngles.z;
+        }
     }
 }

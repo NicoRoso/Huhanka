@@ -18,7 +18,7 @@ public class playerMovementOlegVer : MonoBehaviour
     {
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
-        move = (transform.right * x + transform.forward * z) + gravity;
+        move = (transform.right.normalized * x + transform.forward.normalized * z) + gravity;
         characterController.Move(move * _speed * Time.deltaTime);
     }
 }
