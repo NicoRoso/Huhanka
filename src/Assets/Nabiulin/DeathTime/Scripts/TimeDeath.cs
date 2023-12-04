@@ -37,7 +37,6 @@ public class TimeDeath : MonoBehaviour
     {
         if (isStarted)
         {
-            _canvasTime.SetActive(true);
             _timer -= Time.deltaTime;
 
             if (_timer <= 0)
@@ -45,7 +44,6 @@ public class TimeDeath : MonoBehaviour
                 _canvasTime.SetActive(false);
                 _canvasDeath.SetActive(true);
                 _timer = 0;
-
             }
 
             if (_slider.value < _slider.maxValue / 2.5f)
@@ -61,5 +59,7 @@ public class TimeDeath : MonoBehaviour
         isStarted = isStart;
         _timer = seconds;
         _slider.maxValue = seconds;
+        
+        _canvasTime.SetActive(isStart);
     }
 }
