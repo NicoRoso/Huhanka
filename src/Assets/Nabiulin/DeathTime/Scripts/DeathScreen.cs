@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DeathScreen : MonoBehaviour
@@ -25,5 +26,7 @@ public class DeathScreen : MonoBehaviour
             fade_image.color = color;
             yield return null;
         }
+
+        SceneManager.LoadScene("MainGame");
     }
 }
