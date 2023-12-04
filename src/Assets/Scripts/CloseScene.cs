@@ -18,6 +18,7 @@ public class CloseScene : MonoBehaviour
             _closingScene.SetActive(false);
             if (_openingScene is not null) _openingScene.SetActive(true);
             gameObject.SetActive(false);
+            _player.GetComponent<TimeDeath>().StartTimer(false, 120f);
         }
     }
 
