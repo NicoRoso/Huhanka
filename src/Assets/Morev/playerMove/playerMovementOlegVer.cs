@@ -29,7 +29,7 @@ public class playerMovementOlegVer : MonoBehaviour
         gravity = new Vector3(0, -fallSpeed, 0);
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
-        _stabilizator.forward = transform.forward;
+        _stabilizator.rotation = transform.rotation;
         _stabilizator.eulerAngles = new Vector3(0, _stabilizator.eulerAngles.y, 0);
         move = _stabilizator.right * x + _stabilizator.forward * z + gravity + jump;
         if (Input.GetButtonDown("Jump"))

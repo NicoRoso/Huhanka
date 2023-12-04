@@ -42,8 +42,8 @@ public class StepsSounds : MonoBehaviour
                 usualSteps.Add(s.name);
             }
         }
-        //StartCoroutine(StepSounds());
-        //StartCoroutine(StepSoundsStop());
+        StartCoroutine(StepSounds());
+        StartCoroutine(StepSoundsStop());
     }
 
 
@@ -52,23 +52,26 @@ public class StepsSounds : MonoBehaviour
     {
         while (true)
         {
-            if (currentGround.CompareTag("ground") && GetComponent<CharacterController>().isGrounded && isPlayerMoving())
+            if(currentGround != null)
             {
-                currentStep = UnityEngine.Random.Range(0, groundSteps.Count);
-                audioManager.Play(groundSteps[currentStep]);
-                yield return new WaitForSeconds(0.5f);
-            }
-            if (currentGround.CompareTag("snow") && GetComponent<CharacterController>().isGrounded && isPlayerMoving())
-            {
-                currentStep = UnityEngine.Random.Range(0, snowSteps.Count);
-                audioManager.Play(snowSteps[currentStep]);
-                yield return new WaitForSeconds(0.5f);
-            }
-            if (currentGround.CompareTag("usual") && GetComponent<CharacterController>().isGrounded && isPlayerMoving())
-            {
-                currentStep = UnityEngine.Random.Range(0, usualSteps.Count);
-                audioManager.Play(usualSteps[currentStep]);
-                yield return new WaitForSeconds(0.5f);
+                if (currentGround.CompareTag("ground") && GetComponent<CharacterController>().isGrounded && isPlayerMoving())
+                {
+                    currentStep = UnityEngine.Random.Range(0, groundSteps.Count);
+                    audioManager.Play(groundSteps[currentStep]);
+                    yield return new WaitForSeconds(0.5f);
+                }
+                if (currentGround.CompareTag("snow") && GetComponent<CharacterController>().isGrounded && isPlayerMoving())
+                {
+                    currentStep = UnityEngine.Random.Range(0, snowSteps.Count);
+                    audioManager.Play(snowSteps[currentStep]);
+                    yield return new WaitForSeconds(0.5f);
+                }
+                if (currentGround.CompareTag("usual") && GetComponent<CharacterController>().isGrounded && isPlayerMoving())
+                {
+                    currentStep = UnityEngine.Random.Range(0, usualSteps.Count);
+                    audioManager.Play(usualSteps[currentStep]);
+                    yield return new WaitForSeconds(0.5f);
+                }
             }
             yield return null;
         }
@@ -78,20 +81,23 @@ public class StepsSounds : MonoBehaviour
         int oldCurrentStep = currentStep;
         while(true)
         {
-            if (!(currentGround.CompareTag("ground") && GetComponent<CharacterController>().isGrounded && isPlayerMoving()) && (oldCurrentStep != currentStep))
+            if(currentGround != null)
             {
-                audioManager.SoftStop(groundSteps[currentStep],1000);
-                oldCurrentStep = currentStep;
-            }
-            if (!(currentGround.CompareTag("snow") && GetComponent<CharacterController>().isGrounded && isPlayerMoving()) && (oldCurrentStep != currentStep))
-            {
-                audioManager.SoftStop(snowSteps[currentStep], 1000);
-                oldCurrentStep = currentStep;
-            }
-            if (!(currentGround.CompareTag("usual") && GetComponent<CharacterController>().isGrounded && isPlayerMoving()) && (oldCurrentStep != currentStep))
-            {
-                audioManager.SoftStop(usualSteps[currentStep], 1000);
-                oldCurrentStep = currentStep;
+                if (!(currentGround.CompareTag("ground") && GetComponent<CharacterController>().isGrounded && isPlayerMoving()) && (oldCurrentStep != currentStep))
+                {
+                    audioManager.Stop(groundSteps[currentStep]);
+                    oldCurrentStep = currentStep;
+                }
+                if (!(currentGround.CompareTag("snow") && GetComponent<CharacterController>().isGrounded && isPlayerMoving()) && (oldCurrentStep != currentStep))
+                {
+                    audioManager.Stop(snowSteps[currentStep]);
+                    oldCurrentStep = currentStep;
+                }
+                if (!(currentGround.CompareTag("usual") && GetComponent<CharacterController>().isGrounded && isPlayerMoving()) && (oldCurrentStep != currentStep))
+                {
+                    audioManager.Stop(usualSteps[currentStep]);
+                    oldCurrentStep = currentStep;
+                }
             }
             yield return null;
         }

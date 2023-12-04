@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 313849727}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: ground
+  m_TagString: snow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
