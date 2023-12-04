@@ -95,7 +95,7 @@ public class playerMovementOlegVer : MonoBehaviour
     {
         if (_groundCheker.IsGrounded)
         {
-            JumpTimer = 0.5f;
+            JumpTimer = 0.8f;
             // StartCoroutine(JumpMaker());
         }
     }
