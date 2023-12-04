@@ -7,6 +7,7 @@ public class GlobalGravitySwitcher : MonoBehaviour
     List<ObjectGravitator> gravitatedObjects = new List<ObjectGravitator>();
     playerMovementOlegVer player;
     bool playerGravityChangable = false;
+    float playerGravity = 1;
     private void Start()
     {
         player = GameObject.FindObjectOfType<playerMovementOlegVer>();
@@ -16,20 +17,29 @@ public class GlobalGravitySwitcher : MonoBehaviour
         }
         StartCoroutine(GravitySwitcher());
     }
+    private void Update()
+    {
+        if(playerGravityChangable)
+        {
+            player.SetGravityCoefficient(playerGravity);
+        }
+    }
     IEnumerator GravitySwitcher()
     {
         while(true)
         {
             GravityCoefficient(2);
+            playerGravity = 0.5f;
             if(playerGravityChangable)
             {
-                player.SetGravityCoefficient(0.5f);
+                player.GetComponent<AudioManager>().Play("gravityOn");
             }
             yield return new WaitForSeconds(5);
             GravityCoefficient(-1);
-            if(playerGravityChangable)
+            playerGravity = -0.1f;
+            if (playerGravityChangable)
             {
-                player.SetGravityCoefficient(-0.1f);
+                player.GetComponent<AudioManager>().Play("gravityOff");
             }
             yield return new WaitForSeconds(4);
         }
@@ -53,6 +63,7 @@ public class GlobalGravitySwitcher : MonoBehaviour
         if (other.TryGetComponent<playerMovementOlegVer>(out playerMovementOlegVer player))
         {
             playerGravityChangable = false;
+            player.SetGravityCoefficient(1);
         }
     }
 }

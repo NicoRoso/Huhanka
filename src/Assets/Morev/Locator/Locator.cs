@@ -19,11 +19,14 @@ public class Locator : MonoBehaviour
     float currentDistance;
     [SerializeField] LocatorStates locatorStates;
     LocatorState currentState;
+    LocatorState previousState;
+    AudioManager audioManager;
     [HideInInspector]
     public bool isOpeningPossible = false;
+    public bool spawnerNeedCharge = false;
     private void Start()
     {
-        //SetLocatorDestination(_testDestination);
+        audioManager = _player.GetComponent<AudioManager>();
     }
     public void SetLocatorDestination(Transform thisDestination)
     {
@@ -36,7 +39,7 @@ public class Locator : MonoBehaviour
         SetCurrentState();
         SetStateImageOnScreen();
         //TestSetStateValueOnScreen();
-        if(currentState.number == 5)
+        if(currentState.number == 5 && !spawnerNeedCharge)
         {
             isOpeningPossible = true;
         }
@@ -44,6 +47,11 @@ public class Locator : MonoBehaviour
         {
             isOpeningPossible = false;
         }
+        if(previousState != currentState)
+        {
+            OnSwitchState(currentState.number);
+        }
+        previousState = currentState;
     }
 
     LocatorState FindStateWithNumber(int num)
@@ -83,7 +91,7 @@ public class Locator : MonoBehaviour
                     }
                     else
                     {
-                        currentState = FindStateWithNumber(5);
+                       currentState = FindStateWithNumber(5);
                     }
                 }
             }
@@ -97,15 +105,62 @@ public class Locator : MonoBehaviour
     {
         GetComponent<Image>().sprite = currentState.image;
     }
-    void SetSoundOfThisState()
-    {
-        // переключение звуковых вариаций локатора
-    }
     public void ChangeDistances(int dist12, int dist23, int dist34, int dist45)
     {
         distanceSwitch12 = dist12;
         distanceSwitch23 = dist23;
         distanceSwitch34 = dist34;
         distanceSwitch45 = dist45;
+    }
+
+    void OnSwitchState(int state)
+    {
+        switch(state)
+        {
+            case 1:
+                {
+                    audioManager.SoftStop("locator2",10);
+                    audioManager.SoftStop("locator3", 10);
+                    audioManager.SoftStop("locator4", 10);
+                    audioManager.SoftStop("locator5", 10);
+                    break;
+                }
+            case 2:
+                {
+                    audioManager.Play("locator2");
+                    audioManager.SoftStop("locator3", 10);
+                    audioManager.SoftStop("locator4", 10);
+                    audioManager.SoftStop("locator5", 10);
+                    break;
+                }
+            case 3:
+                {
+                    audioManager.Play("locator3");
+                    audioManager.SoftStop("locator2", 10);
+                    audioManager.SoftStop("locator4", 10);
+                    audioManager.SoftStop("locator5", 10);
+                    break;
+                }
+            case 4:
+                {
+                    audioManager.Play("locator4");
+                    audioManager.SoftStop("locator3", 10);
+                    audioManager.SoftStop("locator2", 10);
+                    audioManager.SoftStop("locator5", 10);
+                    break;
+                }
+            case 5:
+                {
+                    audioManager.Play("locator5");
+                    audioManager.SoftStop("locator3", 10);
+                    audioManager.SoftStop("locator2", 10);
+                    audioManager.SoftStop("locator4", 10);
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
     }
 }

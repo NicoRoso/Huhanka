@@ -17,14 +17,14 @@ MonoBehaviour:
     soundName: 
     image: {fileID: 21300000, guid: c38217d97d8f0464f800a32a66098d4d, type: 3}
   - number: 2
-    soundName: 
+    soundName: locator2
     image: {fileID: 21300000, guid: 054bd5fad24f2ad46b81e3020ae73c03, type: 3}
   - number: 3
-    soundName: 
+    soundName: locator3
     image: {fileID: 21300000, guid: 62909a03e6113b04482c689f88715235, type: 3}
   - number: 4
-    soundName: 
+    soundName: locator4
     image: {fileID: 21300000, guid: 88e76a222842ba747901f01c45533db3, type: 3}
   - number: 5
-    soundName: 
+    soundName: locator5
     image: {fileID: 21300000, guid: e7f73602de010ed4f8943d5cf9abee8d, type: 3}
