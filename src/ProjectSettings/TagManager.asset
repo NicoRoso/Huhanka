@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - DoorTrig
+  - ground
+  - snow
+  - usual
   layers:
   - Default
   - TransparentFX
