@@ -25,21 +25,26 @@ public class playerMovementOlegVer : MonoBehaviour
     }
     void Update()
     {
+        _stabilizator.rotation = transform.rotation;
+        _stabilizator.rotation = new Quaternion(0, _stabilizator.rotation.y, 0, _stabilizator.rotation.w);
+    }
+    float time = 0;
+    private void FixedUpdate()
+    {
         gravity = new Vector3(0, -fallSpeed, 0);
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
-        _stabilizator.rotation = transform.rotation;
-        _stabilizator.eulerAngles = new Vector3(0, _stabilizator.eulerAngles.y, 0);
+
         move = _stabilizator.right * x + _stabilizator.forward * z + gravity + jump;
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
         }
-        characterController.Move(move * _speed * Time.deltaTime);
-    }
-    float time = 0;
-    private void FixedUpdate()
-    {
+        characterController.Move(move * _speed * Time.fixedDeltaTime);
+
+
+
+
         if (!characterController.isGrounded)
         {
             
@@ -117,7 +122,7 @@ public class playerMovementOlegVer : MonoBehaviour
             jump = new Vector3(0, heigh * Mathf.Abs(gravityCoefficient), 0);
             heigh -=  _jumpHeigh / 60 * Time.deltaTime;
             time += Time.deltaTime;
-            if(isGrounded && time > 0.2f)
+            if(isGrounded && time > 0.15f)
             {
                 heigh = 0;
             }
