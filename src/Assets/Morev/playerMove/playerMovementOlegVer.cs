@@ -119,13 +119,21 @@ public class playerMovementOlegVer : MonoBehaviour
         float time = 0;
         while(heigh > 0)
         {
-            jump = new Vector3(0, heigh * Mathf.Abs(gravityCoefficient), 0);
-            heigh -=  _jumpHeigh / 60 * Time.deltaTime;
-            time += Time.deltaTime;
-            if(isGrounded && time > 0.15f)
+            if ((isGrounded  || characterController.isGrounded) && time > 0.2f)
             {
                 heigh = 0;
+                break;
             }
+            heigh -=  _jumpHeigh / 100 * Time.deltaTime;
+            if(gravityCoefficient > 0)
+            {
+                jump = new Vector3(0, heigh, 0);
+            }
+            else
+            {
+                jump = Vector3.zero;
+            }
+            time += Time.deltaTime;
             yield return null;
         }
         jump = new Vector3(0, 0, 0);
