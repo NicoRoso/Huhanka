@@ -15,10 +15,14 @@ public class playerMovementOlegVer : MonoBehaviour
     float z;
     Vector3 move;
     Vector3 gravity;
-    Vector3 jump = new Vector3(0,0,0);
+    Vector3 jump = new Vector3(0, 0, 0);
     float fallSpeed = 0;
     public float gravityCoefficient = 1;
-    bool isGrounded = true;
+    [SerializeField] bool isGrounded = true;
+
+
+    [SerializeField] private GroundCheker _groundCheker;
+    [SerializeField] private float JumpTimer;
     private void Start()
     {
         StartCoroutine(isActuallyGrounded(0.15f));
@@ -27,19 +31,30 @@ public class playerMovementOlegVer : MonoBehaviour
     {
         _stabilizator.rotation = transform.rotation;
         _stabilizator.rotation = new Quaternion(0, _stabilizator.rotation.y, 0, _stabilizator.rotation.w);
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
     }
     float time = 0;
     private void FixedUpdate()
     {
+        if (JumpTimer > 0)
+        {
+            JumpTimer -= Time.deltaTime;
+            jump = new Vector3(0, _jumpHeigh - _jumpHeigh / 100 * Time.deltaTime, 0);
+        }
+        else
+        {
+            jump = new Vector3(0, 0, 0);
+        }
+
         gravity = new Vector3(0, -fallSpeed, 0);
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
 
         move = _stabilizator.right * x + _stabilizator.forward * z + gravity + jump;
-        if (Input.GetButtonDown("Jump"))
-        {
-            Jump();
-        }
+
         characterController.Move(move * _speed * Time.fixedDeltaTime);
 
 
@@ -47,17 +62,17 @@ public class playerMovementOlegVer : MonoBehaviour
 
         if (!characterController.isGrounded)
         {
-            
-            if(_maxFallspeed < Mathf.Abs(time))
+
+            if (_maxFallspeed < Mathf.Abs(time))
             {
-                if(gravityCoefficient < 0 && time > 0)
+                if (gravityCoefficient < 0 && time > 0)
                 {
                     time += Time.deltaTime * gravityCoefficient * 9.8f;
                     fallSpeed = time;
                 }
                 else
                 {
-                    if(gravityCoefficient > 0 && time < 0)
+                    if (gravityCoefficient > 0 && time < 0)
                     {
                         time += Time.deltaTime * gravityCoefficient * 9.8f;
                         fallSpeed = time;
@@ -78,9 +93,10 @@ public class playerMovementOlegVer : MonoBehaviour
     }
     void Jump()
     {
-        if (isGrounded)
+        if (_groundCheker.IsGrounded)
         {
-            StartCoroutine(JumpMaker());
+            JumpTimer = 0.5f;
+            // StartCoroutine(JumpMaker());
         }
     }
     public void SetGravityCoefficient(float newCoefficient)
@@ -92,7 +108,7 @@ public class playerMovementOlegVer : MonoBehaviour
         float timePassed = 0;
         while (true)
         {
-            if(!characterController.isGrounded)
+            if (!isGrounded)
             {
                 timePassed += Time.deltaTime;
             }
@@ -117,15 +133,15 @@ public class playerMovementOlegVer : MonoBehaviour
     {
         float heigh = _jumpHeigh;
         float time = 0;
-        while(heigh > 0)
+        while (heigh > 0)
         {
-            if ((isGrounded  || characterController.isGrounded) && time > 0.2f)
+            if (_groundCheker.IsGrounded && time > 0.3f)//(isGrounded  || characterController.isGrounded) && time > 0.2f)
             {
-                heigh = 0;
+                heigh = 0f;
                 break;
             }
-            heigh -=  _jumpHeigh / 100 * Time.deltaTime;
-            if(gravityCoefficient > 0)
+            heigh -= _jumpHeigh / 100 * Time.deltaTime;
+            if (gravityCoefficient > 0)
             {
                 jump = new Vector3(0, heigh, 0);
             }
