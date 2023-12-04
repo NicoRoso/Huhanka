@@ -16,11 +16,11 @@ public class FireFog : MonoBehaviour
             _O2.SetActive(true);
             _snow.SetActive(false);
             other.gameObject.GetComponent<TimeDeath>().StartTimer(true, 80f);
-            RenderSettings.fog = true; //C59A4B ColorRender
-            RenderSettings.fogColor = new Color(0.772549f, 0.6039216f, 0.2941177f);
-            
-            RenderSettings.fogDensity = 0.03f;
-            RenderSettings.fogMode = FogMode.ExponentialSquared;
+            // RenderSettings.fog = true; //C59A4B ColorRender
+            // RenderSettings.fogColor = new Color(0.772549f, 0.6039216f, 0.2941177f);
+            //
+            // RenderSettings.fogDensity = 0.03f;
+            // RenderSettings.fogMode = FogMode.ExponentialSquared;
         }
     }
 }

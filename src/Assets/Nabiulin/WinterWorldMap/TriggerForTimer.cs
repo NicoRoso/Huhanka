@@ -22,9 +22,9 @@ public class TriggerForTimer : MonoBehaviour
             _snow.SetActive(true);
             other.gameObject.GetComponent<TimeDeath>().StartTimer(true, 120f);
             RenderSettings.fog = true; //808080 ColorRender
-            RenderSettings.fogColor = new Color(0.5019608f, 0.5019608f, 0.5019608f);
-            RenderSettings.fogDensity = 0.02f;
-            RenderSettings.fogMode = FogMode.Exponential;
+            // RenderSettings.fogColor = new Color(0.5019608f, 0.5019608f, 0.5019608f);
+            // RenderSettings.fogDensity = 0.02f;
+            // RenderSettings.fogMode = FogMode.Exponential;
         }
     }
 }
