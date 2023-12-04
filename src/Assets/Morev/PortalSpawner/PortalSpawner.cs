@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PortalSpawner : MonoBehaviour
 {
+    AudioManager playerAudio;
     private void Update()
     {
+        playerAudio = GetComponent<AudioManager>();
         if(GameObject.FindObjectOfType<Locator>().isOpeningPossible && Input.GetKeyDown(KeyCode.F))
         {
-            StartCoroutine(SpawnCountdown(3));
+            StartCoroutine(SpawnCountdown(2.5f));
         }
     }
     IEnumerator SpawnCountdown(float seconds)
@@ -16,6 +18,7 @@ public class PortalSpawner : MonoBehaviour
         float timePassed = 0;
         if(!GameObject.FindObjectOfType<Locator>().destination.gameObject.activeSelf)
         {
+            playerAudio.Play("openPortalProcess");
             while (timePassed < seconds)
             {
                 timePassed += Time.deltaTime;
@@ -25,8 +28,10 @@ public class PortalSpawner : MonoBehaviour
                 }
                 else
                 {
+                    playerAudio.SoftStop("openPortalProcess", 10);
                     yield break;
                 }
+                playerAudio.Play("portalOpened");
             }
         }
         else

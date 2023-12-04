@@ -23,6 +23,7 @@ public class Locator : MonoBehaviour
     AudioManager audioManager;
     [HideInInspector]
     public bool isOpeningPossible = false;
+    public bool spawnerNeedCharge = false;
     private void Start()
     {
         audioManager = _player.GetComponent<AudioManager>();
@@ -38,7 +39,7 @@ public class Locator : MonoBehaviour
         SetCurrentState();
         SetStateImageOnScreen();
         //TestSetStateValueOnScreen();
-        if(currentState.number == 5)
+        if(currentState.number == 5 && !spawnerNeedCharge)
         {
             isOpeningPossible = true;
         }

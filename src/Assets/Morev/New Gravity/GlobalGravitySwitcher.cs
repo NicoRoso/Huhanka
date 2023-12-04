@@ -30,9 +30,17 @@ public class GlobalGravitySwitcher : MonoBehaviour
         {
             GravityCoefficient(2);
             playerGravity = 0.5f;
+            if(playerGravityChangable)
+            {
+                player.GetComponent<AudioManager>().Play("gravityOn");
+            }
             yield return new WaitForSeconds(5);
             GravityCoefficient(-1);
             playerGravity = -0.1f;
+            if (playerGravityChangable)
+            {
+                player.GetComponent<AudioManager>().Play("gravityOff");
+            }
             yield return new WaitForSeconds(4);
         }
     }

@@ -29,6 +29,8 @@ namespace RAP.Scripts
             RaycastHit hit;
             if (!Physics.Raycast(ray, out hit)) return;
             if (!hit.collider.gameObject.CompareTag("Pick Up") || !Input.GetKeyDown(KeyCode.E)) return;
+            GameObject.FindObjectOfType<Locator>().spawnerNeedCharge = false;
+            GameObject.FindObjectOfType<playerMovementOlegVer>().GetComponent<AudioManager>().Play("pick");
             Destroy(hit.collider.gameObject);
             CollectablesPlus();
         }
